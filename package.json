@@ -32,10 +32,10 @@
     ]
   },
   "devDependencies": {
-    "react-app-rewired": "^2.1.5",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^10.0.3",
-    "@testing-library/user-event": "^10.0.2"
+    "@testing-library/user-event": "^10.0.2",
+    "react-app-rewired": "^2.1.5"
   },
   "author": "Gayan Madushanka",
   "license": "GNW"
