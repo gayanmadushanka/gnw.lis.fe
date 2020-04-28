@@ -8,14 +8,17 @@ import {
   FETCH_TEMPLATES,
   fetchTemplatesSuccess,
   fetchTemplatesFailure,
+  GENERATE_DOCUMENT,
+  generateDocumentSuccess,
+  generateDocumentFailure,
 } from "../actions";
 
-const url = "http://localhost:3000/api/v1/document/templates";
+const fetchTemplatesUrl = "http://localhost:3000/api/v1/document/templates";
 
 function fetchTemplatesEpic(action$) {
   return action$.ofType(FETCH_TEMPLATES).pipe(
     switchMap(() => {
-      return ajax.getJSON(url).pipe(
+      return ajax.getJSON(fetchTemplatesUrl).pipe(
         map((templates) =>
           templates.map((template) => ({
             id: template,
@@ -29,4 +32,15 @@ function fetchTemplatesEpic(action$) {
   );
 }
 
-export const rootEpic = combineEpics(fetchTemplatesEpic);
+const generateDocumentUrl = "http://localhost:3000/api/v1/document/generate";
+
+function generateDocumentEpic(action$) {
+  return action$.ofType(GENERATE_DOCUMENT).pipe(
+    switchMap(() => {
+      return ajax.getJSON(generateDocumentUrl);
+    }),
+    map((templates) => generateDocumentSuccess(templates)),
+    catchError((error) => of(generateDocumentFailure(error.message)))
+  );
+}
+export const rootEpic = combineEpics(fetchTemplatesEpic, generateDocumentEpic);

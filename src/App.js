@@ -3,13 +3,19 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "./App.css";
 
-import { fetchTemplates } from "./actions";
+import { fetchTemplates, generateDocument } from "./actions";
 
 import TemplateGrid from "./components/TemplateGrid";
 
 class App extends Component {
   render() {
-    const { fetchTemplates, isLoading, error, templates } = this.props;
+    const {
+      fetchTemplates,
+      generateDocument,
+      isLoading,
+      error,
+      templates,
+    } = this.props;
 
     return (
       <div className="App">
@@ -17,6 +23,7 @@ class App extends Component {
         {isLoading && <h1>Fetching data</h1>}
         {!isLoading && !error && <TemplateGrid templates={templates} />}
         {error && <h1>{error}</h1>}
+        <button onClick={generateDocument}>Generate</button>
       </div>
     );
   }
@@ -28,6 +35,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       fetchTemplates,
+      generateDocument,
     },
     dispatch
   );

@@ -2,6 +2,9 @@ import {
   FETCH_TEMPLATES,
   FETCH_TEMPLATES_SUCCESS,
   FETCH_TEMPLATES_FAILURE,
+  GENERATE_DOCUMENT,
+  GENERATE_DOCUMENT_SUCCESS,
+  GENERATE_DOCUMENT_FAILURE,
 } from "../actions";
 
 const initialState = {
@@ -31,6 +34,18 @@ export default function rootReducer(state = initialState, action) {
         templates: [],
         isLoading: false,
         error: action.payload,
+      };
+    case GENERATE_DOCUMENT:
+      return {
+        ...state,
+      };
+    case GENERATE_DOCUMENT_SUCCESS:
+      return {
+        ...state,
+      };
+    case GENERATE_DOCUMENT_FAILURE:
+      return {
+        ...state,
       };
     default:
       return state;
