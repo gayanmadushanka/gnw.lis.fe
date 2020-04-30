@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, NavItem, NavLink } from "reactstrap";
+import { Nav, NavItem, NavLink, Alert, Spinner } from "reactstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -29,15 +29,25 @@ const Landing = (props) => (
       </Nav>
     </div>
     <div className="main-container">
-      {props.isLoading && <h1>Fetching data</h1>}
+      {props.isLoading && (
+        <Spinner size="lg" color="info" className="spinner" />
+      )}
       {!props.isLoading && !props.error && props.templates && (
         <TemplateGrid
           templates={props.templates}
           generateDocument={props.generateDocument}
         />
       )}
-      {props.error && <h1>{props.error}</h1>}
-      {props.message && <h1>{props.message}</h1>}
+      {props.error && (
+        <Alert color="danger">
+          <strong>{props.error} </strong>
+        </Alert>
+      )}
+      {props.message && (
+        <Alert color="success">
+          <strong>{props.message} </strong>
+        </Alert>
+      )}
     </div>
   </>
 );

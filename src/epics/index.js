@@ -1,7 +1,7 @@
 import { combineEpics } from "redux-observable";
 
 import { of, from } from "rxjs";
-import { switchMap, map, flatMap, catchError } from "rxjs/operators";
+import { switchMap, map, flatMap, catchError, delay } from "rxjs/operators";
 
 import {
   FETCH_TEMPLATES,
@@ -16,6 +16,7 @@ const fetchTemplatesUrl = "http://localhost:3000/api/v1/document/templates";
 
 const fetchTemplatesEpic = (action$) => {
   return action$.ofType(FETCH_TEMPLATES).pipe(
+    delay(1000),
     switchMap(() => {
       return from(fetch(fetchTemplatesUrl)).pipe(
         flatMap((response) => response.json()),
@@ -36,6 +37,7 @@ const generateDocumentUrl = "http://localhost:3000/api/v1/document/generate";
 
 const generateDocumentEpic = (action$) => {
   return action$.ofType(GENERATE_DOCUMENT).pipe(
+    delay(1000),
     switchMap(() => {
       return from(fetch(generateDocumentUrl)).pipe(
         flatMap((response) => response.json())

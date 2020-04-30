@@ -56,3 +56,8 @@ html {
 .nav-item a:active {
   background-color: turquoise;
 }
+
+.spinner {
+  position: fixed;
+  top: 50%;
+}

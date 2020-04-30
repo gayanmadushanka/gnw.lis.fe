@@ -28,7 +28,6 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         templates: [...action.payload],
         isLoading: false,
-        error: null,
       };
     case FETCH_TEMPLATES_FAILURE:
       return {
@@ -40,15 +39,20 @@ export default function rootReducer(state = initialState, action) {
     case GENERATE_DOCUMENT:
       return {
         ...state,
+        isLoading: true,
+        error: null,
+        message: null,
       };
     case GENERATE_DOCUMENT_SUCCESS:
       return {
         ...state,
         message: action.payload,
+        isLoading: false,
       };
     case GENERATE_DOCUMENT_FAILURE:
       return {
         ...state,
+        isLoading: false,
         error: action.payload,
       };
     default:
