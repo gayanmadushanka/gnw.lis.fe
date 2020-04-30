@@ -24,10 +24,12 @@ export const generateDocument = () => ({
   type: GENERATE_DOCUMENT,
 });
 
-export const generateDocumentSuccess = (templates) => ({
+export const generateDocumentSuccess = (message) => ({
   type: GENERATE_DOCUMENT_SUCCESS,
+  payload: message,
 });
 
 export const generateDocumentFailure = (message) => ({
   type: GENERATE_DOCUMENT_FAILURE,
+  payload: message,
 });

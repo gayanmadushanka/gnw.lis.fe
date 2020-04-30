@@ -37,6 +37,7 @@ const Landing = (props) => (
         />
       )}
       {props.error && <h1>{props.error}</h1>}
+      {props.message && <h1>{props.message}</h1>}
     </div>
   </>
 );
@@ -45,6 +46,7 @@ Landing.propTypes = {
   templates: PropTypes.array,
   isLoading: PropTypes.bool,
   error: PropTypes.string,
+  message: PropTypes.string,
   fetchTemplates: PropTypes.func,
   generateDocument: PropTypes.func,
 };

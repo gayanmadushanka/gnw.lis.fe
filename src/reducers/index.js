@@ -11,6 +11,7 @@ const initialState = {
   templates: null,
   isLoading: false,
   error: null,
+  message: null,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -20,6 +21,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         isLoading: true,
         error: null,
+        message: null,
       };
     case FETCH_TEMPLATES_SUCCESS:
       return {
@@ -42,10 +44,12 @@ export default function rootReducer(state = initialState, action) {
     case GENERATE_DOCUMENT_SUCCESS:
       return {
         ...state,
+        message: action.payload,
       };
     case GENERATE_DOCUMENT_FAILURE:
       return {
         ...state,
+        error: action.payload,
       };
     default:
       return state;
