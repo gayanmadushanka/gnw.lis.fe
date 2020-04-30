@@ -12,3 +12,47 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.clearfix {
+  clear: both;
+}
+
+body {
+  background: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
+
+.card .nav-link {
+  padding: 2rem;
+}
+
+.body-container {
+  padding: 1.5rem;
+}
+
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background: #0053a0a8;
+  width: 15rem;
+}
+
+.main-container {
+  width: calc(100% - 15rem);
+  margin-left: 15rem;
+}
+
+.nav-item {
+  background-color: aliceblue;
+}
+
+.nav-item a:active {
+  background-color: turquoise;
+}

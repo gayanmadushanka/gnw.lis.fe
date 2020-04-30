@@ -2,7 +2,7 @@ import React from "react";
 import { PropTypes } from "prop-types";
 import { Button } from "reactstrap";
 
-function AuthenticatedDownload({ id, url, title }) {
+const AuthenticatedDownload = ({ id, url, title }) => {
   const downloadFile = async () => {
     fetch(url).then((response) => {
       const fileName = response.headers
@@ -34,7 +34,7 @@ function AuthenticatedDownload({ id, url, title }) {
       {title}
     </Button>
   );
-}
+};
 
 AuthenticatedDownload.propTypes = {
   id: PropTypes.any,

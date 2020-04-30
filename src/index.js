@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { createStore, applyMiddleware } from "redux";
 import { createEpicMiddleware } from "redux-observable";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
 import rootReducer from "./reducers";
 import { rootEpic } from "./epics";
@@ -20,9 +21,11 @@ epicMiddleware.run(rootEpic);
 
 const appWithProvider = (
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

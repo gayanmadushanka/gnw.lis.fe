@@ -15,7 +15,7 @@ import {
 
 const fetchTemplatesUrl = "http://localhost:3000/api/v1/document/templates";
 
-function fetchTemplatesEpic(action$) {
+const fetchTemplatesEpic = (action$) => {
   return action$.ofType(FETCH_TEMPLATES).pipe(
     switchMap(() => {
       return ajax.getJSON(fetchTemplatesUrl).pipe(
@@ -30,11 +30,11 @@ function fetchTemplatesEpic(action$) {
     map((templates) => fetchTemplatesSuccess(templates)),
     catchError((error) => of(fetchTemplatesFailure(error.message)))
   );
-}
+};
 
 const generateDocumentUrl = "http://localhost:3000/api/v1/document/generate";
 
-function generateDocumentEpic(action$) {
+const generateDocumentEpic = (action$) => {
   return action$.ofType(GENERATE_DOCUMENT).pipe(
     switchMap(() => {
       return ajax.getJSON(generateDocumentUrl);
@@ -42,5 +42,22 @@ function generateDocumentEpic(action$) {
     map((templates) => generateDocumentSuccess(templates)),
     catchError((error) => of(generateDocumentFailure(error.message)))
   );
-}
-export const rootEpic = combineEpics(fetchTemplatesEpic, generateDocumentEpic);
+};
+
+// const downloadDocumentUrl = "http://localhost:3000/api/v1/document/download";
+
+// const downloadDocumentEpic = (action$) => {
+//   return action$.ofType(GENERATE_DOCUMENT).pipe(
+//     switchMap(() => {
+//       return ajax.getJSON(downloadDocumentUrl);
+//     }),
+//     map((templates) => generateDocumentSuccess(templates)),
+//     catchError((error) => of(generateDocumentFailure(error.message)))
+//   );
+// };
+
+export const rootEpic = combineEpics(
+  fetchTemplatesEpic,
+  generateDocumentEpic
+  // downloadDocumentEpic
+);
