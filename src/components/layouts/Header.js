@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => {
   const drawerWidth = 240;
   return {
     toolbar: {
-      paddingRight: 100,
+      paddingRight: 24,
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
@@ -77,7 +77,7 @@ const Header = (props) => {
           noWrap
           className={classes.title}
         >
-          Dashbord
+          {props.module}
         </Typography>
         <IconButton color="inherit">
           <Badge color="secondary">
@@ -96,6 +96,7 @@ const Header = (props) => {
 
 Header.propTypes = {
   open: PropTypes.bool,
+  module: PropTypes.string,
   handleDrawerToggle: PropTypes.func,
 };
 

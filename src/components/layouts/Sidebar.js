@@ -74,12 +74,9 @@ const Sidebar = (props) => {
         </IconButton>
       </div>
       <Divider />
-
       <List>
         <SidebarItems />
       </List>
-
-      {/* <List>{SidebarItems}</List> */}
     </Drawer>
   );
 };

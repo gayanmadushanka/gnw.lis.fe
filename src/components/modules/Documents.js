@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Grid, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import Orders from "../shared/Orders";
+import { Templates } from "../shared";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -24,7 +24,7 @@ export default (props) => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <Orders />
+            <Templates />
           </Paper>
         </Grid>
       </Grid>

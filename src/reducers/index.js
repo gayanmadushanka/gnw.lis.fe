@@ -16,7 +16,7 @@ const initialState = {
   error: null,
   message: null,
   open: true,
-  module: "Dashboard",
+  module: "Documents",
 };
 
 export default function rootReducer(state = initialState, action) {
