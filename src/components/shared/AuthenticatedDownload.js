@@ -1,6 +1,5 @@
 import React from "react";
 import { PropTypes } from "prop-types";
-import { Button } from "reactstrap";
 
 const AuthenticatedDownload = ({ id, url, title }) => {
   const downloadFile = async () => {
@@ -24,15 +23,16 @@ const AuthenticatedDownload = ({ id, url, title }) => {
   };
 
   return (
-    <Button
-      id={id}
-      color="primary"
-      size="sm"
-      disabled={false}
-      onClick={downloadFile}
-    >
-      {title}
-    </Button>
+    // <Button
+    //   id={id}
+    //   color="primary"
+    //   size="sm"
+    //   disabled={false}
+    //   onClick={downloadFile}
+    // >
+    //   {title}
+    // </Button>
+    <></>
   );
 };
 

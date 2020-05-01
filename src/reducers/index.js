@@ -5,7 +5,9 @@ import {
   GENERATE_DOCUMENT,
   GENERATE_DOCUMENT_SUCCESS,
   GENERATE_DOCUMENT_FAILURE,
-  TOGGLE_NAVBAR,
+  HANDLE_DRAWER_TOGGLE,
+  LOAD_DASHBOARD,
+  LOAD_DOCUMENTS,
 } from "../actions";
 
 const initialState = {
@@ -13,7 +15,8 @@ const initialState = {
   isLoading: false,
   error: null,
   message: null,
-  collapsed: false,
+  open: true,
+  module: "Dashboard",
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -57,10 +60,20 @@ export default function rootReducer(state = initialState, action) {
         isLoading: false,
         error: action.payload,
       };
-    case TOGGLE_NAVBAR:
+    case HANDLE_DRAWER_TOGGLE:
       return {
         ...state,
-        collapsed: !state.collapsed,
+        open: !state.open,
+      };
+    case LOAD_DASHBOARD:
+      return {
+        ...state,
+        module: "Dashboard",
+      };
+    case LOAD_DOCUMENTS:
+      return {
+        ...state,
+        module: "Documents",
       };
     default:
       return state;

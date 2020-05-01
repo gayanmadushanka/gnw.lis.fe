@@ -6,7 +6,10 @@ export const GENERATE_DOCUMENT = "GENERATE_DOCUMENT";
 export const GENERATE_DOCUMENT_SUCCESS = "GENERATE_DOCUMENT_SUCCESS";
 export const GENERATE_DOCUMENT_FAILURE = "GENERATE_DOCUMENT_FAILURE";
 
-export const TOGGLE_NAVBAR = "TOGGLE_NAVBAR";
+export const HANDLE_DRAWER_TOGGLE = "HANDLE_DRAWER_TOGGLE";
+
+export const LOAD_DASHBOARD = "LOAD_DASHBOARD";
+export const LOAD_DOCUMENTS = "LOAD_DOCUMENTS";
 
 export const fetchTemplates = () => ({
   type: FETCH_TEMPLATES,
@@ -36,6 +39,14 @@ export const generateDocumentFailure = (message) => ({
   payload: message,
 });
 
-export const toggleNavbar = () => ({
-  type: TOGGLE_NAVBAR,
+export const handleDrawerToggle = () => ({
+  type: HANDLE_DRAWER_TOGGLE,
+});
+
+export const loadDashboard = () => ({
+  type: LOAD_DASHBOARD,
+});
+
+export const loadDocuments = () => ({
+  type: LOAD_DOCUMENTS,
 });

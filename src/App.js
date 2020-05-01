@@ -1,15 +1,12 @@
 import React from "react";
-import "./App.css";
+import { Switch, Route } from "react-router-dom";
 
-import Router from "./components/Router";
+import Landing from "./components/Landing";
+import { NoMatch } from "./components/shared";
 
-const App = () => (
-  <div className="App">
-    <Router />
-  </div>
+export default () => (
+  <Switch>
+    <Route exact path="/" component={Landing} />
+    <Route component={NoMatch} />
+  </Switch>
 );
-
-export default App;
-
-
-

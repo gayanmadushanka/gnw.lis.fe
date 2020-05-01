@@ -1,12 +1,11 @@
 import React from "react";
-import { Button } from "reactstrap";
 import PropTypes from "prop-types";
 
 import AuthenticatedDownload from "./AuthenticatedDownload";
 
 const Template = (props) => (
   <>
-    <tr>
+    {/* <tr>
       <td>{props.template.name}</td>
       <td>
         <Button color="primary" size="sm" onClick={props.generateDocument}>
@@ -20,7 +19,7 @@ const Template = (props) => (
           title="Download"
         />
       </td>
-    </tr>
+    </tr> */}
   </>
 );
 
