@@ -5,6 +5,7 @@ import {
   GENERATE_DOCUMENT,
   GENERATE_DOCUMENT_SUCCESS,
   GENERATE_DOCUMENT_FAILURE,
+  TOGGLE_NAVBAR,
 } from "../actions";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   isLoading: false,
   error: null,
   message: null,
+  collapsed: false,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -54,6 +56,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+    case TOGGLE_NAVBAR:
+      return {
+        ...state,
+        collapsed: !state.collapsed,
       };
     default:
       return state;

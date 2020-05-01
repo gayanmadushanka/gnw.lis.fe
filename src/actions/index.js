@@ -6,6 +6,8 @@ export const GENERATE_DOCUMENT = "GENERATE_DOCUMENT";
 export const GENERATE_DOCUMENT_SUCCESS = "GENERATE_DOCUMENT_SUCCESS";
 export const GENERATE_DOCUMENT_FAILURE = "GENERATE_DOCUMENT_FAILURE";
 
+export const TOGGLE_NAVBAR = "TOGGLE_NAVBAR";
+
 export const fetchTemplates = () => ({
   type: FETCH_TEMPLATES,
 });
@@ -32,4 +34,8 @@ export const generateDocumentSuccess = (message) => ({
 export const generateDocumentFailure = (message) => ({
   type: GENERATE_DOCUMENT_FAILURE,
   payload: message,
+});
+
+export const toggleNavbar = () => ({
+  type: TOGGLE_NAVBAR,
 });

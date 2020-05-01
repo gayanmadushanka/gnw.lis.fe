@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-header {
@@ -26,6 +26,13 @@ body {
 html {
   overflow: -moz-scrollbars-vertical;
   overflow-y: scroll;
+}
+
+#container {
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .card .nav-link {
