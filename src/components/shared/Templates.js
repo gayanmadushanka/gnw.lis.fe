@@ -1,33 +1,20 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import MaterialTable from "material-table";
 
-function createData(section, name) {
-  return { section, name };
-}
+import { generateDocument } from "../../actions";
 
-const templates = [
-  createData("524", "Deceased died in local"),
-  createData("524", "Deceased died in abroad"),
-  createData("524", "Beneficiaries lives in local"),
-  createData("524", "Beneficiaries lives in abroad"),
-  createData("524", "Resealing"),
-
-  createData("528", "Deceased died in local"),
-  createData("528", "Deceased died in abroad"),
-  createData("528", "Beneficiaries lives in local"),
-  createData("528", "Beneficiaries lives in abroad"),
-  createData("528", "Reinstate"),
-];
-
-export default function Orders() {
+const Templates = (props) => {
   return (
     <MaterialTable
       title="All Templates"
       columns={[
         { title: "Section", field: "section" },
-        { title: "Name", field: "name" },
+        { title: "Name", field: "templateName" },
       ]}
-      data={templates}
+      data={props.templates}
       actions={[
         {
           icon: "gavel",
@@ -47,4 +34,21 @@ export default function Orders() {
       }}
     />
   );
-}
+};
+
+Templates.propTypes = {
+  templates: PropTypes.array,
+  generateDocument: PropTypes.func,
+};
+
+const mapStateToProps = (state) => ({ ...state });
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      generateDocument,
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(Templates);

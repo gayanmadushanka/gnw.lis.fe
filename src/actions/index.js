@@ -9,7 +9,6 @@ export const GENERATE_DOCUMENT_FAILURE = "GENERATE_DOCUMENT_FAILURE";
 export const HANDLE_DRAWER_TOGGLE = "HANDLE_DRAWER_TOGGLE";
 
 export const LOAD_DASHBOARD = "LOAD_DASHBOARD";
-export const LOAD_DOCUMENTS = "LOAD_DOCUMENTS";
 
 export const fetchTemplates = () => ({
   type: FETCH_TEMPLATES,
@@ -45,8 +44,4 @@ export const handleDrawerToggle = () => ({
 
 export const loadDashboard = () => ({
   type: LOAD_DASHBOARD,
-});
-
-export const loadDocuments = () => ({
-  type: LOAD_DOCUMENTS,
 });

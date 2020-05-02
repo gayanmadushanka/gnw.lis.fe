@@ -7,16 +7,14 @@ import {
   GENERATE_DOCUMENT_FAILURE,
   HANDLE_DRAWER_TOGGLE,
   LOAD_DASHBOARD,
-  LOAD_DOCUMENTS,
 } from "../actions";
 
 const initialState = {
   templates: null,
   isLoading: false,
   error: null,
-  message: null,
   open: true,
-  module: "Documents",
+  module: "Dashboard",
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -26,7 +24,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         isLoading: true,
         error: null,
-        message: null,
+        module: "Documents",
       };
     case FETCH_TEMPLATES_SUCCESS:
       return {
@@ -46,12 +44,10 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         isLoading: true,
         error: null,
-        message: null,
       };
     case GENERATE_DOCUMENT_SUCCESS:
       return {
         ...state,
-        message: action.payload,
         isLoading: false,
       };
     case GENERATE_DOCUMENT_FAILURE:
@@ -69,11 +65,6 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         module: "Dashboard",
-      };
-    case LOAD_DOCUMENTS:
-      return {
-        ...state,
-        module: "Documents",
       };
     default:
       return state;
