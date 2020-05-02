@@ -7,7 +7,6 @@ import {
   Paper,
   CircularProgress,
   Snackbar,
-  Button,
 } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
 import { makeStyles } from "@material-ui/core/styles";
