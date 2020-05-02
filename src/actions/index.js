@@ -24,13 +24,24 @@ export const fetchTemplatesFailure = (message) => ({
   payload: message,
 });
 
-export const generateDocument = () => ({
-  type: GENERATE_DOCUMENT,
-});
+export const generateDocument = (event, rowData) => {
+  return {
+    type: GENERATE_DOCUMENT,
+    payload: {
+      section: rowData.section,
+      templateName: rowData.templateName,
+      data: {
+        firstName: "ගයාන්",
+        lastName: "මධූශංඛ",
+        phoneNo: "0714254030",
+        date: "Sat May 02 2020",
+      },
+    },
+  };
+};
 
-export const generateDocumentSuccess = (message) => ({
+export const generateDocumentSuccess = () => ({
   type: GENERATE_DOCUMENT_SUCCESS,
-  payload: message,
 });
 
 export const generateDocumentFailure = (message) => ({

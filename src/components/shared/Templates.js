@@ -19,7 +19,7 @@ const Templates = (props) => {
         {
           icon: "gavel",
           tooltip: "Generate",
-          onClick: (event, rowData) => alert("You saved " + rowData.name),
+          onClick: props.generateDocument,
         },
       ]}
       options={{
