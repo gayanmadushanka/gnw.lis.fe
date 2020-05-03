@@ -9,7 +9,7 @@ import PeopleIcon from "@material-ui/icons/People";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import BarChartIcon from "@material-ui/icons/BarChart";
 
-import { loadDashboard, fetchTemplates } from "../../actions";
+import { loadDashboard, fetchTemplates, loadClients } from "../../actions";
 
 const SidebarItems = (props) => (
   <div>
@@ -25,7 +25,7 @@ const SidebarItems = (props) => (
       </ListItemIcon>
       <ListItemText primary="Documents" />
     </ListItem>
-    <ListItem button disabled>
+    <ListItem button onClick={props.loadClients}>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
@@ -49,6 +49,7 @@ const SidebarItems = (props) => (
 SidebarItems.propTypes = {
   loadDashboard: PropTypes.func,
   fetchTemplates: PropTypes.func,
+  loadClients: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({ ...state });
@@ -58,6 +59,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       loadDashboard,
       fetchTemplates,
+      loadClients,
     },
     dispatch
   );

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { Header, Footer, Sidebar } from "./layouts";
-import { Dashboard, Documents } from "./modules";
+import { Dashboard, Documents, Clients } from "./modules";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +28,7 @@ const Landing = (props) => {
         <div className={classes.appBarSpacer} />
         {props.module === "Dashboard" && <Dashboard />}
         {props.module === "Documents" && <Documents />}
+        {props.module === "Clients" && <Clients />}
         <Footer />
       </main>
     </div>
