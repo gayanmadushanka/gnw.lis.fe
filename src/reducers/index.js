@@ -16,24 +16,42 @@ const initialState = {
   error: null,
   open: true,
   module: "Clients",
-  sections: [
+  fields: [
     {
-      name: "Section 1",
-      fields: [
-        {
-          id: "1",
-          name: "firstName",
-          label: "First Name",
-          component: "input",
-        },
-        {
-          id: "2",
-          name: "firstName",
-          label: "First Name",
-          component: "input",
-        },
-      ],
+      id: "firstName",
+      label: "First Name",
+      type: "text",
+      // validationType: "string",
+      // validations: [
+      //   {
+      //     type: "required",
+      //     params: ["this field is required"],
+      //   },
+      //   {
+      //     type: "min",
+      //     params: [5, "name cannot be less than 5 characters"],
+      //   },
+      //   {
+      //     type: "max",
+      //     params: [10, "name cannot be more than 10 characters"],
+      //   },
+      // ],
     },
+    // {
+    //   id: "lastName",
+    //   label: "Last Name",
+    //   type: "text",
+    // },
+    // {
+    //   id: "phoneNo",
+    //   label: "Phone No",
+    //   type: "text",
+    // },
+    // {
+    //   id: "dateOfBirth",
+    //   label: "Date of birth",
+    //   type: "date",
+    // },
   ],
 };
 
