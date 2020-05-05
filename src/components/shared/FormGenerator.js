@@ -4,14 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { useForm, Controller } from "react-hook-form";
 import { createYupSchema } from "./yupSchemaCreator";
-import {
-  Grid,
-  Button,
-  Icon,
-  TextField,
-  Container,
-  Box,
-} from "@material-ui/core";
+import { Button, Icon, TextField, Container, Box } from "@material-ui/core";
 import * as Yup from "yup";
 import "./yup-phone";
 
@@ -30,70 +23,68 @@ const FormGenerator = (props) => {
   const [selectedDate, handleDateChange] = React.useState();
   const onSubmit = (data) => console.log(data);
   return (
-    <Container>
-      <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-        {props.fields.map((field, index) => {
-          switch (field.type) {
-            case "text":
-              return (
-                <Box width="100%">
-                  <TextField
-                    id={index}
+    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+      {props.fields.map((field, index) => {
+        switch (field.type) {
+          case "text":
+            return (
+              <Box width="100%">
+                <TextField
+                  id={index}
+                  name={field.id}
+                  label={field.label}
+                  inputRef={register}
+                  variant="outlined"
+                  margin="normal"
+                  fullWidth
+                />
+              </Box>
+            );
+          case "date":
+            return (
+              <Box width="100%">
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <Controller
+                    as={
+                      <KeyboardDatePicker
+                        id={index}
+                        label={field.label + " (dd/MM/yyyy)"}
+                        autoOk
+                        disableFuture
+                        openTo="year"
+                        views={["year", "month", "date"]}
+                        inputVariant="outlined"
+                        variant="inline"
+                        format="MM/dd/yyyy"
+                        margin="normal"
+                        value={selectedDate}
+                        onChange={handleDateChange}
+                      />
+                    }
                     name={field.id}
-                    label={field.label}
-                    inputRef={register}
-                    variant="outlined"
-                    margin="normal"
-                    fullWidth
+                    control={control}
+                    defaultValue={selectedDate}
                   />
-                </Box>
-              );
-            case "date":
-              return (
-                <Box width="100%">
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <Controller
-                      as={
-                        <KeyboardDatePicker
-                          id={index}
-                          label={field.label + " (dd/MM/yyyy)"}
-                          autoOk
-                          disableFuture
-                          openTo="year"
-                          views={["year", "month", "date"]}
-                          inputVariant="outlined"
-                          variant="inline"
-                          format="MM/dd/yyyy"
-                          margin="normal"
-                          value={selectedDate}
-                          onChange={handleDateChange}
-                        />
-                      }
-                      name={field.id}
-                      control={control}
-                      defaultValue={selectedDate}
-                    />
-                  </MuiPickersUtilsProvider>
-                </Box>
-              );
-            default:
-              return <></>;
-          }
-        })}
+                </MuiPickersUtilsProvider>
+              </Box>
+            );
+          default:
+            return <></>;
+        }
+      })}
 
-        <Box width="100%" my={3}>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            startIcon={<Icon>send</Icon>}
-            size="large"
-            fullWidth
-          >
-            SUBMIT
-          </Button>
-        </Box>
-      </form>
+      <Box width="100%" my={3}>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          startIcon={<Icon>send</Icon>}
+          size="large"
+          fullWidth
+        >
+          SUBMIT
+        </Button>
+      </Box>
       <div style={{ color: "red" }}>
         <pre>
           {Object.keys(errors).length > 0 && (
@@ -101,7 +92,7 @@ const FormGenerator = (props) => {
           )}
         </pre>
       </div>
-    </Container>
+    </form>
   );
 };
 
