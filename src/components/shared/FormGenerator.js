@@ -5,7 +5,8 @@ import { bindActionCreators } from "redux";
 import { useForm, Controller } from "react-hook-form";
 import { createYupSchema } from "./yupSchemaCreator";
 import { Grid, Button, Icon, TextField, Container } from "@material-ui/core";
-import * as yup from "yup";
+import * as Yup from "yup";
+import "./yup-phone";
 
 import {
   MuiPickersUtilsProvider,
@@ -15,9 +16,9 @@ import DateFnsUtils from "@date-io/date-fns";
 
 const FormGenerator = (props) => {
   const { register, control, handleSubmit, errors } = useForm({
-    validationSchema: yup
-      .object()
-      .shape(props.fields.reduce(createYupSchema, {})),
+    validationSchema: Yup.object().shape(
+      props.fields.reduce(createYupSchema, {})
+    ),
   });
   const [selectedDate, handleDateChange] = React.useState(
     new Date("2014-08-18T21:11:54")
@@ -104,9 +105,3 @@ const mapStateToProps = (state) => ({ ...state });
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormGenerator);
-
-// const yepSchema = yup.object().shape({
-//   firstName: yup.string().required(),
-//   // age: yup.number().required().positive().integer(),
-//   // website: yup.string().url(),
-// });

@@ -11,6 +11,7 @@
     "@material-ui/pickers": "^3.2.10",
     "ajv": "^6.12.2",
     "clsx": "^1.1.0",
+    "google-libphonenumber": "^3.2.9",
     "i18next": "^19.4.4",
     "material-table": "^1.57.2",
     "react": "^16.13.1",

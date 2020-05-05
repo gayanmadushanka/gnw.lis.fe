@@ -51,16 +51,17 @@ const initialState = {
           type: "required",
           params: ["phone number is required"],
         },
+        {
+          type: "phone",
+          params: ["LK", true],
+        },
         // {
-        //   type: "matches",
-        //   params: [
-        //     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-        //     "Phone number is not valid",
-        //   ],
+        //   type: "min",
+        //   params: [10, "phone number cannot be less than 10 characters"],
         // },
         // {
-        //   type: "moreThan",
-        //   params: [10, "phone number cannot be more than 10 characters"],
+        //   type: "max",
+        //   params: [11, "phone number cannot be more than 10 characters"],
         // },
       ],
     },
