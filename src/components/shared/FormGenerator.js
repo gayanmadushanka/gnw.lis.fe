@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { useForm, Controller } from "react-hook-form";
-import * as yup from "yup";
 import { createYupSchema } from "./yupSchemaCreator";
 import { Grid, Button, Icon, TextField, Container } from "@material-ui/core";
+import * as yup from "yup";
 
 import {
   MuiPickersUtilsProvider,
@@ -13,53 +13,16 @@ import {
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
-import { buildYup } from "json-schema-to-yup";
-
-const yepSchema = yup.object().shape({
-  firstName: yup.string().required(),
-  // age: yup.number().required().positive().integer(),
-  // website: yup.string().url(),
-});
-
 const FormGenerator = (props) => {
-  // const yepSchema = props.fields.reduce(createYupSchema, {});
-  // console.log(yepSchema);
   const { register, control, handleSubmit, errors } = useForm({
-    validationSchema: yepSchema,
+    validationSchema: yup
+      .object()
+      .shape(props.fields.reduce(createYupSchema, {})),
   });
-  const onSubmit = (data) => console.log(data);
-
   const [selectedDate, handleDateChange] = React.useState(
     new Date("2014-08-18T21:11:54")
   );
-
-  // const yepSchema = yup.object().shape({
-  //   firstName: yup.string().required(),
-  //   // age: yup.number().required().positive().integer(),
-  //   // website: yup.string().url(),
-  // });
-
-  // const config = {
-  //   // for error messages...
-  //   errMessages: {
-  //     age: {
-  //       required: "A person must have an age",
-  //     },
-  //     email: {
-  //       required: "You must enter an email address",
-  //       format: "Not a valid email address",
-  //     },
-  //   },
-  // };
-
-  // const yupSchemaf = buildYup(json, config);
-  // // console.dir(schema)
-  // yupSchemaf
-  //   .isValid({
-  //     age: 24,
-  //   })
-  //   .then((valid) => console.log(valid));
-
+  const onSubmit = (data) => console.log(data);
   return (
     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <Container>
@@ -110,7 +73,6 @@ const FormGenerator = (props) => {
               return <></>;
           }
         })}
-
         <div style={{ color: "red" }}>
           <pre>
             {Object.keys(errors).length > 0 && (
@@ -142,3 +104,9 @@ const mapStateToProps = (state) => ({ ...state });
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormGenerator);
+
+// const yepSchema = yup.object().shape({
+//   firstName: yup.string().required(),
+//   // age: yup.number().required().positive().integer(),
+//   // website: yup.string().url(),
+// });

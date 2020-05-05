@@ -21,36 +21,71 @@ const initialState = {
       id: "firstName",
       label: "First Name",
       type: "text",
-      // validationType: "string",
-      // validations: [
-      //   {
-      //     type: "required",
-      //     params: ["this field is required"],
-      //   },
-      //   {
-      //     type: "min",
-      //     params: [5, "name cannot be less than 5 characters"],
-      //   },
-      //   {
-      //     type: "max",
-      //     params: [10, "name cannot be more than 10 characters"],
-      //   },
-      // ],
+      validationType: "string",
+      validations: [
+        {
+          type: "required",
+          params: ["this field is required"],
+        },
+      ],
     },
-    // {
-    //   id: "lastName",
-    //   label: "Last Name",
-    //   type: "text",
-    // },
-    // {
-    //   id: "phoneNo",
-    //   label: "Phone No",
-    //   type: "text",
-    // },
+    {
+      id: "lastName",
+      label: "Last Name",
+      type: "text",
+      validationType: "string",
+      validations: [
+        {
+          type: "required",
+          params: ["this field is required"],
+        },
+      ],
+    },
+    {
+      id: "phoneNumber",
+      label: "Phone Number",
+      type: "text",
+      validationType: "string",
+      validations: [
+        {
+          type: "required",
+          params: ["phone number is required"],
+        },
+        // {
+        //   type: "matches",
+        //   params: [
+        //     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+        //     "Phone number is not valid",
+        //   ],
+        // },
+        // {
+        //   type: "moreThan",
+        //   params: [10, "phone number cannot be more than 10 characters"],
+        // },
+      ],
+    },
+    {
+      id: "email",
+      label: "Email",
+      type: "text",
+      validationType: "string",
+      validations: [
+        {
+          type: "required",
+          params: ["this field is required"],
+        },
+        {
+          type: "email",
+          params: ["please enter a valid email"],
+        },
+      ],
+    },
     // {
     //   id: "dateOfBirth",
     //   label: "Date of birth",
     //   type: "date",
+    //   validationType: "date",
+    //   // validations: null,
     // },
   ],
 };
