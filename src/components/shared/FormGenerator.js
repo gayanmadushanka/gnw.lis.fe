@@ -4,7 +4,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { useForm, Controller } from "react-hook-form";
 import { createYupSchema } from "./yupSchemaCreator";
-import { Grid, Button, Icon, TextField, Container } from "@material-ui/core";
+import {
+  Grid,
+  Button,
+  Icon,
+  TextField,
+  Container,
+  Box,
+} from "@material-ui/core";
 import * as Yup from "yup";
 import "./yup-phone";
 
@@ -20,18 +27,16 @@ const FormGenerator = (props) => {
       props.fields.reduce(createYupSchema, {})
     ),
   });
-  const [selectedDate, handleDateChange] = React.useState(
-    new Date("2014-08-18T21:11:54")
-  );
+  const [selectedDate, handleDateChange] = React.useState();
   const onSubmit = (data) => console.log(data);
   return (
-    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-      <Container>
+    <Container>
+      <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
         {props.fields.map((field, index) => {
           switch (field.type) {
             case "text":
               return (
-                <Grid container>
+                <Box width="100%">
                   <TextField
                     id={index}
                     name={field.id}
@@ -39,13 +44,14 @@ const FormGenerator = (props) => {
                     inputRef={register}
                     variant="outlined"
                     margin="normal"
+                    fullWidth
                   />
-                </Grid>
+                </Box>
               );
             case "date":
               return (
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <Grid container>
+                <Box width="100%">
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <Controller
                       as={
                         <KeyboardDatePicker
@@ -67,32 +73,35 @@ const FormGenerator = (props) => {
                       control={control}
                       defaultValue={selectedDate}
                     />
-                  </Grid>
-                </MuiPickersUtilsProvider>
+                  </MuiPickersUtilsProvider>
+                </Box>
               );
             default:
               return <></>;
           }
         })}
-        <div style={{ color: "red" }}>
-          <pre>
-            {Object.keys(errors).length > 0 && (
-              <label>Errors: {JSON.stringify(errors, null, 2)}</label>
-            )}
-          </pre>
-        </div>
-        <Grid container>
+
+        <Box width="100%" my={3}>
           <Button
             type="submit"
             variant="contained"
             color="primary"
             startIcon={<Icon>send</Icon>}
+            size="large"
+            fullWidth
           >
             SUBMIT
           </Button>
-        </Grid>
-      </Container>
-    </form>
+        </Box>
+      </form>
+      <div style={{ color: "red" }}>
+        <pre>
+          {Object.keys(errors).length > 0 && (
+            <label>Errors: {JSON.stringify(errors, null, 2)}</label>
+          )}
+        </pre>
+      </div>
+    </Container>
   );
 };
 

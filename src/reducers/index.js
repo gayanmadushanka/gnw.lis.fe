@@ -73,13 +73,18 @@ const initialState = {
         },
       ],
     },
-    // {
-    //   id: "dateOfBirth",
-    //   label: "Date of birth",
-    //   type: "date",
-    //   validationType: "date",
-    //   // validations: null,
-    // },
+    {
+      id: "dateOfBirth",
+      label: "Date of birth",
+      type: "date",
+      validationType: "date",
+      validations: [
+        {
+          type: "nullable",
+          params: [],
+        },
+      ],
+    },
   ],
 };
 
