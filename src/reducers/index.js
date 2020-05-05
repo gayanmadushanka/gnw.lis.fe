@@ -53,16 +53,8 @@ const initialState = {
         },
         {
           type: "phone",
-          params: ["LK", true],
+          params: ["LK"],
         },
-        // {
-        //   type: "min",
-        //   params: [10, "phone number cannot be less than 10 characters"],
-        // },
-        // {
-        //   type: "max",
-        //   params: [11, "phone number cannot be more than 10 characters"],
-        // },
       ],
     },
     {
