@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -6,13 +6,14 @@ import { useForm, Controller } from "react-hook-form";
 import { createYupSchema } from "./yupSchemaCreator";
 import { Button, Icon, TextField, Box } from "@material-ui/core";
 import * as Yup from "yup";
-import "./yup-phone";
-
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+
+import "./yup-phone";
+import { generateDocument } from "../../actions";
 
 const FormGenerator = (props) => {
   const { register, control, handleSubmit, errors } = useForm({
@@ -20,8 +21,8 @@ const FormGenerator = (props) => {
       props.fields.reduce(createYupSchema, {})
     ),
   });
-  const [selectedDate, handleDateChange] = React.useState();
-  const onSubmit = (data) => console.log(data);
+  const [selectedDate, handleDateChange] = useState();
+  const onSubmit = (data) => props.generateDocument(data);
   return (
     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       {props.fields.map((field, index) => {
@@ -98,10 +99,17 @@ const FormGenerator = (props) => {
 
 FormGenerator.propTypes = {
   fields: PropTypes.array,
+  generateDocument: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({ ...state });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      generateDocument,
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormGenerator);

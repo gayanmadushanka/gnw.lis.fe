@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import MaterialTable from "material-table";
 
-import { generateDocument } from "../../actions";
+import { fetchTemplateMetadata } from "../../actions";
 
 const Templates = (props) => {
   return (
@@ -19,7 +19,7 @@ const Templates = (props) => {
         {
           icon: "gavel",
           tooltip: "Generate",
-          onClick: props.generateDocument,
+          onClick: props.fetchTemplateMetadata,
         },
       ]}
       options={{
@@ -38,7 +38,7 @@ const Templates = (props) => {
 
 Templates.propTypes = {
   templates: PropTypes.array,
-  generateDocument: PropTypes.func,
+  fetchTemplateMetadata: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({ ...state });
@@ -46,7 +46,7 @@ const mapStateToProps = (state) => ({ ...state });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      generateDocument,
+      fetchTemplateMetadata,
     },
     dispatch
   );

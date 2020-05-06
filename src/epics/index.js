@@ -7,6 +7,9 @@ import {
   FETCH_TEMPLATES,
   fetchTemplatesSuccess,
   fetchTemplatesFailure,
+  FETCH_TEMPLATE_METADATA,
+  fetchTemplateMetadataSuccess,
+  fetchTemplateMetadataFailure,
   GENERATE_DOCUMENT,
   generateDocumentSuccess,
   generateDocumentFailure,
@@ -20,6 +23,23 @@ const fetchTemplatesEpic = (action$) =>
       from(fetch(fetchTemplatesUrl).then((response) => response.json())).pipe(
         map((templates) => fetchTemplatesSuccess(templates)),
         catchError((error) => of(fetchTemplatesFailure(error.message)))
+      )
+    )
+  );
+
+const getFetchTemplateMetadataUrl = (section, templateId) =>
+  `http://localhost:3000/api/v1/templates/${section}/${templateId}/metadata`;
+
+const fetchTemplateMetadataEpic = (action$) =>
+  action$.ofType(FETCH_TEMPLATE_METADATA).pipe(
+    switchMap(({ payload }) =>
+      from(
+        fetch(
+          getFetchTemplateMetadataUrl(payload.section, payload.templateId)
+        ).then((response) => response.json())
+      ).pipe(
+        map((metadata) => fetchTemplateMetadataSuccess(metadata)),
+        catchError((error) => of(fetchTemplateMetadataFailure(error.message)))
       )
     )
   );
@@ -56,4 +76,8 @@ const generateDocumentEpic = (action$) =>
     )
   );
 
-export const rootEpic = combineEpics(fetchTemplatesEpic, generateDocumentEpic);
+export const rootEpic = combineEpics(
+  fetchTemplatesEpic,
+  fetchTemplateMetadataEpic,
+  generateDocumentEpic
+);

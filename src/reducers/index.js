@@ -2,12 +2,16 @@ import {
   FETCH_TEMPLATES,
   FETCH_TEMPLATES_SUCCESS,
   FETCH_TEMPLATES_FAILURE,
+  FETCH_TEMPLATE_METADATA,
+  FETCH_TEMPLATE_METADATA_SUCCESS,
+  FETCH_TEMPLATE_METADATA_FAILURE,
   GENERATE_DOCUMENT,
   GENERATE_DOCUMENT_SUCCESS,
   GENERATE_DOCUMENT_FAILURE,
   HANDLE_DRAWER_TOGGLE,
   LOAD_DASHBOARD,
   LOAD_CLIENTS,
+  CLOSE_FORM,
 } from "../actions";
 
 const initialState = {
@@ -15,77 +19,9 @@ const initialState = {
   isLoading: false,
   error: null,
   open: true,
-  module: "Clients",
-  fields: [
-    {
-      id: "firstName",
-      label: "First Name",
-      type: "text",
-      validationType: "string",
-      validations: [
-        {
-          type: "required",
-          params: ["this field is required"],
-        },
-      ],
-    },
-    {
-      id: "lastName",
-      label: "Last Name",
-      type: "text",
-      validationType: "string",
-      validations: [
-        {
-          type: "required",
-          params: ["this field is required"],
-        },
-      ],
-    },
-    {
-      id: "phoneNumber",
-      label: "Phone Number",
-      type: "text",
-      validationType: "string",
-      validations: [
-        {
-          type: "required",
-          params: ["phone number is required"],
-        },
-        {
-          type: "phone",
-          params: ["LK"],
-        },
-      ],
-    },
-    {
-      id: "email",
-      label: "Email",
-      type: "text",
-      validationType: "string",
-      validations: [
-        {
-          type: "required",
-          params: ["this field is required"],
-        },
-        {
-          type: "email",
-          params: ["please enter a valid email"],
-        },
-      ],
-    },
-    {
-      id: "dateOfBirth",
-      label: "Date of birth",
-      type: "date",
-      validationType: "date",
-      validations: [
-        {
-          type: "nullable",
-          params: [],
-        },
-      ],
-    },
-  ],
+  module: "Documents",
+  loadForm: false,
+  fields: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -110,10 +46,31 @@ export default function rootReducer(state = initialState, action) {
         isLoading: false,
         error: action.payload,
       };
+    case FETCH_TEMPLATE_METADATA:
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+      };
+    case FETCH_TEMPLATE_METADATA_SUCCESS:
+      return {
+        ...state,
+        fields: [...action.payload.fields],
+        loadForm: true,
+        isLoading: false,
+      };
+    case FETCH_TEMPLATE_METADATA_FAILURE:
+      return {
+        ...state,
+        fields: [],
+        isLoading: false,
+        error: action.payload,
+      };
     case GENERATE_DOCUMENT:
       return {
         ...state,
         isLoading: true,
+        loadForm: false,
         error: null,
       };
     case GENERATE_DOCUMENT_SUCCESS:
@@ -141,6 +98,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         module: "Clients",
+      };
+    case CLOSE_FORM:
+      return {
+        ...state,
+        loadForm: false,
       };
     default:
       return state;

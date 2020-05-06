@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { CircularProgress, Snackbar } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
 
-import { Templates } from "../shared";
+import { Templates, FormDialog } from "../shared";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -24,6 +24,7 @@ const Documents = (props) => {
     <>
       {props.isLoading && <CircularProgress color="secondary" />}
       {!props.isLoading && !props.error && props.templates && <Templates />}
+      {props.loadForm && !props.error && <FormDialog />}
       {!props.error && (
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert severity="error">This is an error message!</Alert>
@@ -35,6 +36,7 @@ const Documents = (props) => {
 
 Documents.propTypes = {
   module: PropTypes.string,
+  loadForm: PropTypes.bool,
   error: PropTypes.string,
 };
 

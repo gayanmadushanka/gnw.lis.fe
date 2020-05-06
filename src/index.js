@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 import rootReducer from "./reducers";
 import { rootEpic } from "./epics";
@@ -14,7 +15,10 @@ import App from "./App";
 
 const epicMiddleware = createEpicMiddleware();
 
-const store = createStore(rootReducer, applyMiddleware(epicMiddleware));
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(epicMiddleware))
+);
 
 epicMiddleware.run(rootEpic);
 
