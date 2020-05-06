@@ -12,7 +12,7 @@ import {
   generateDocumentFailure,
 } from "../actions";
 
-const fetchTemplatesUrl = "http://localhost:3000/api/v1/document/templates";
+const fetchTemplatesUrl = "http://localhost:3000/api/v1/templates";
 
 const fetchTemplatesEpic = (action$) =>
   action$.ofType(FETCH_TEMPLATES).pipe(
@@ -24,7 +24,7 @@ const fetchTemplatesEpic = (action$) =>
     )
   );
 
-const generateDocumentUrl = "http://localhost:3000/api/v1/document/generate";
+const generateDocumentUrl = "http://localhost:3000/api/v1/documents/generate";
 
 const generateDocumentEpic = (action$) =>
   action$.ofType(GENERATE_DOCUMENT).pipe(
@@ -55,5 +55,5 @@ const generateDocumentEpic = (action$) =>
       )
     )
   );
-  
+
 export const rootEpic = combineEpics(fetchTemplatesEpic, generateDocumentEpic);

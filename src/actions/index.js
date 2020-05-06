@@ -30,12 +30,13 @@ export const generateDocument = (event, rowData) => {
     type: GENERATE_DOCUMENT,
     payload: {
       section: rowData.section,
-      templateName: rowData.templateName,
+      templateId: rowData.templateId,
       data: {
         firstName: "ගයාන්",
         lastName: "මධූශංඛ",
-        phoneNo: "0714254030",
-        date: "Sat May 02 2020",
+        phoneNumber: "0714254030",
+        email: "gayanmadushanka2@gmail.com",
+        dateOfBirth: "1987/12/23",
       },
     },
   };
