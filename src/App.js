@@ -1,12 +1,18 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider } from "@material-ui/core/styles";
 
-import Landing from "./components/Landing";
-import { NoMatch } from "./components/shared";
+import theme from "./theme";
+import Routes from "./Routes";
 
-export default () => (
-  <Switch>
-    <Route exact path="/" component={Landing} />
-    <Route component={NoMatch} />
-  </Switch>
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
+  </ThemeProvider>
 );
+
+export default App;
