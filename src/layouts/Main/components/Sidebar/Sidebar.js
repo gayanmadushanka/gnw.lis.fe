@@ -41,22 +41,22 @@ const pages = [
   },
   {
     title: "Documents",
-    href: "/Documents",
+    href: "/documents",
     icon: <NoteIcon />,
   },
   {
     title: "Clients",
-    href: "/Clients",
+    href: "/clients",
     icon: <PeopleIcon />,
   },
   {
     title: "Matters",
-    href: "/Matters",
+    href: "/matters",
     icon: <MenuBookIcon />,
   },
   {
     title: "Reports",
-    href: "/Reports",
+    href: "/reports",
     icon: <BarChartIcon />,
   },
 ];

@@ -1,19 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { Sidebar, Topbar, Footer } from "./components";
-import { Dashboard, Documents, Clients } from "../../views";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+    paddingTop: 56,
+    height: "100%",
   },
-  appBarSpacer: theme.mixins.toolbar,
+  shiftContent: {
+    paddingLeft: 240,
+  },
   content: {
-    flexGrow: 1,
-    overflow: "auto",
+    height: "100%",
   },
 }));
 
@@ -21,15 +22,16 @@ const Main = (props) => {
   const { children } = props;
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div
+      className={clsx({
+        [classes.root]: true,
+        [classes.shiftContent]: true,
+      })}
+    >
       <Topbar />
       <Sidebar />
       <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
         {children}
-        {props.module === "Dashboard" && <Dashboard />}
-        {props.module === "Documents" && <Documents />}
-        {props.module === "Clients" && <Clients />}
         <Footer />
       </main>
     </div>
@@ -40,6 +42,4 @@ Main.propTypes = {
   children: PropTypes.node,
 };
 
-const mapStateToProps = (state) => ({ ...state });
-
-export default connect(mapStateToProps)(Main);
+export default Main;
