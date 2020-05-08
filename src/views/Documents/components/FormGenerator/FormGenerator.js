@@ -12,7 +12,7 @@ import {
 import DateFnsUtils from "@date-io/date-fns";
 
 import "../../../../helpers/yupPhone";
-import { createYupSchema } from "../../../../helpers/yupSchemaCreator";
+import { createYupSchema } from "../../../../helpers";
 import { generateDocument } from "../../../../actions";
 
 const FormGenerator = (props) => {

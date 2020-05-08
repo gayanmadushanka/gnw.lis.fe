@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export function createYupSchema(schema, config) {
+export default (schema, config) => {
   const { id, validationType, validations = [] } = config;
   if (!yup[validationType]) {
     return schema;
@@ -15,4 +15,4 @@ export function createYupSchema(schema, config) {
   });
   schema[id] = validator;
   return schema;
-}
+};
