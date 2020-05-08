@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Documents = (props) => {
+const Templates = (props) => {
   const classes = useStyles();
   //TODO
   !props.templates && props.fetchTemplates();
@@ -35,7 +35,7 @@ const Documents = (props) => {
   );
 };
 
-Documents.propTypes = {
+Templates.propTypes = {
   fetchTemplates: PropTypes.func,
 };
 
@@ -49,4 +49,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Documents);
+export default connect(mapStateToProps, mapDispatchToProps)(Templates);

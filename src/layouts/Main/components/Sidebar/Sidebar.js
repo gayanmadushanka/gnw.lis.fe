@@ -40,8 +40,8 @@ const pages = [
     icon: <DashboardIcon />,
   },
   {
-    title: "Documents",
-    href: "/documents",
+    title: "Templates",
+    href: "/templates",
     icon: <NoteIcon />,
   },
   {
@@ -54,11 +54,11 @@ const pages = [
     href: "/matters",
     icon: <MenuBookIcon />,
   },
-  {
-    title: "Reports",
-    href: "/reports",
-    icon: <BarChartIcon />,
-  },
+  // {
+  //   title: "Reports",
+  //   href: "/reports",
+  //   icon: <BarChartIcon />,
+  // },
 ];
 
 const Sidebar = (props) => {

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ClientsToolbar = (props) => {
+const MattersToolbar = (props) => {
   const { className, ...rest } = props;
   const classes = useStyles();
   return (
@@ -30,19 +30,19 @@ const ClientsToolbar = (props) => {
       <div className={classes.row}>
         <SearchInput
           className={classes.searchInput}
-          placeholder="Search client"
+          placeholder="Search matter"
         />
         <span className={classes.spacer} />
         <Button color="primary" variant="contained">
-          Add client
+          Add matter
         </Button>
       </div>
     </div>
   );
 };
 
-ClientsToolbar.propTypes = {
+MattersToolbar.propTypes = {
   className: PropTypes.string,
 };
 
-export default ClientsToolbar;
+export default MattersToolbar;

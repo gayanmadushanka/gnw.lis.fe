@@ -1,48 +1,57 @@
 import React from "react";
-import clsx from "clsx";
-import { Container, Grid, Paper } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/styles";
+import { Grid } from "@material-ui/core";
 
-import { Chart, Deposits, Orders } from "./components";
+import {
+  Budget,
+  TotalUsers,
+  TasksProgress,
+  TotalProfit,
+  LatestSales,
+  UsersByDevice,
+  LatestProducts,
+  LatestOrders,
+} from "./components";
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
-  paper: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-  },
-  fixedHeight: {
-    height: 240,
+  root: {
+    padding: theme.spacing(4),
   },
 }));
 
-export default (props) => {
+const Dashboard = () => {
   const classes = useStyles();
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
   return (
-    <Container maxWidth="lg" className={classes.container}>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={8} lg={9}>
-          <Paper className={fixedHeightPaper}>
-            <Chart />
-          </Paper>
+    <div className={classes.root}>
+      <Grid container spacing={4}>
+        <Grid item lg={3} sm={6} xl={3} xs={12}>
+          <Budget />
         </Grid>
-        <Grid item xs={12} md={4} lg={3}>
-          <Paper className={fixedHeightPaper}>
-            <Deposits />
-          </Paper>
+        <Grid item lg={3} sm={6} xl={3} xs={12}>
+          <TotalUsers />
         </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <Orders />
-          </Paper>
+        <Grid item lg={3} sm={6} xl={3} xs={12}>
+          <TasksProgress />
+        </Grid>
+        <Grid item lg={3} sm={6} xl={3} xs={12}>
+          <TotalProfit />
+        </Grid>
+        <Grid item lg={8} md={12} xl={9} xs={12}>
+          <LatestSales />
+        </Grid>
+        <Grid item lg={4} md={6} xl={3} xs={12}>
+          <UsersByDevice />
+        </Grid>
+        <Grid item lg={4} md={6} xl={3} xs={12}>
+          <LatestProducts />
+        </Grid>
+        <Grid item lg={8} md={12} xl={9} xs={12}>
+          <LatestOrders />
         </Grid>
       </Grid>
-    </Container>
+    </div>
   );
 };
+
+export default Dashboard;

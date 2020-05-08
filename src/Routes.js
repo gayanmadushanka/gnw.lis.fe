@@ -5,7 +5,7 @@ import { RouteWithLayout } from "./components";
 import { Main as MainLayout, Minimal as MinimalLayout } from "./layouts";
 import {
   Dashboard as DashboardView,
-  Documents as DocumentsView,
+  Templates as TemplatesView,
   Clients as ClientsView,
   Matters as Mattersiew,
   NotFound as NotFoundView,
@@ -13,7 +13,7 @@ import {
 
 const Routes = () => (
   <Switch>
-    <Redirect exact from="/" to="/documents" />
+    <Redirect exact from="/" to="/dashboard" />
     <RouteWithLayout
       component={DashboardView}
       exact
@@ -21,10 +21,10 @@ const Routes = () => (
       path="/dashboard"
     />
     <RouteWithLayout
-      component={DocumentsView}
+      component={TemplatesView}
       exact
       layout={MainLayout}
-      path="/documents"
+      path="/templates"
     />
     <RouteWithLayout
       component={ClientsView}
