@@ -1,99 +1,90 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { makeStyles } from "@material-ui/core/styles";
-import {
-  Drawer,
-  IconButton,
-  Divider,
-  List,
-  Typography,
-  Toolbar,
-} from "@material-ui/core";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import clsx from "clsx";
+import { connect } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
+import { Drawer, Divider } from "@material-ui/core";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import NoteIcon from "@material-ui/icons/Note";
+import PeopleIcon from "@material-ui/icons/People";
+import MenuBookIcon from "@material-ui/icons/MenuBook";
+import BarChartIcon from "@material-ui/icons/BarChart";
 
-import { handleDrawerToggle } from "../../../../actions";
-import { SidebarNav } from "./components";
+import { Profile, SidebarNav } from "./components";
 
-const useStyles = makeStyles((theme) => {
-  const drawerWidth = 240;
-  return {
-    toolbarIcon: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      padding: "0 8px",
-      ...theme.mixins.toolbar,
-    },
-    drawerPaper: {
-      position: "relative",
-      whiteSpace: "nowrap",
-      width: drawerWidth,
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    drawerPaperClose: {
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      width: theme.spacing(7),
-      [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(9),
-      },
-    },
-  };
-});
+const useStyles = makeStyles((theme) => ({
+  drawer: {
+    width: 240,
+    marginTop: 64,
+    height: "calc(100% - 64px)",
+  },
+  root: {
+    backgroundColor: theme.palette.white,
+    display: "flex",
+    flexDirection: "column",
+    height: "100%",
+    padding: theme.spacing(2),
+  },
+  divider: {
+    margin: theme.spacing(2, 0),
+  },
+  nav: {
+    marginBottom: theme.spacing(2),
+  },
+}));
+
+const pages = [
+  {
+    title: "Dashboard",
+    href: "/dashboard",
+    icon: <DashboardIcon />,
+  },
+  {
+    title: "Documents",
+    href: "/Documents",
+    icon: <NoteIcon />,
+  },
+  {
+    title: "Clients",
+    href: "/Clients",
+    icon: <PeopleIcon />,
+  },
+  {
+    title: "Matters",
+    href: "/Matters",
+    icon: <MenuBookIcon />,
+  },
+  {
+    title: "Reports",
+    href: "/Reports",
+    icon: <BarChartIcon />,
+  },
+];
 
 const Sidebar = (props) => {
+  const { className, ...rest } = props;
   const classes = useStyles();
   return (
     <Drawer
-      variant="permanent"
-      classes={{
-        paper: clsx(
-          classes.drawerPaper,
-          !props.open && classes.drawerPaperClose
-        ),
-      }}
+      anchor="left"
+      classes={{ paper: classes.drawer }}
       open={props.open}
+      variant="persistent"
     >
-      <div className={classes.toolbarIcon}>
-        <Toolbar>
-          <Typography component="h1" variant="h6" color="inherit" noWrap>
-            The Lawyer
-          </Typography>
-        </Toolbar>
-        <IconButton onClick={props.handleDrawerToggle}>
-          <ChevronLeftIcon />
-        </IconButton>
+      <div {...rest} className={clsx(classes.root, className)}>
+        <Profile />
+        <Divider className={classes.divider} />
+        <SidebarNav className={classes.nav} pages={pages} />
       </div>
-      <Divider />
-      <List>
-        <SidebarNav />
-      </List>
     </Drawer>
   );
 };
 
 Sidebar.propTypes = {
-  open: PropTypes.bool,
-  handleDrawerToggle: PropTypes.func,
+  open: PropTypes.bool.isRequired,
+  className: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({ ...state });
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      handleDrawerToggle,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default connect(mapStateToProps)(Sidebar);

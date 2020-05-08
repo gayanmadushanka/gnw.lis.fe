@@ -1,6 +1,6 @@
 import React from "react";
-import clsx from "clsx";
 import PropTypes from "prop-types";
+import clsx from "clsx";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,102 +10,57 @@ import {
   Typography,
   IconButton,
   Badge,
-  Button,
 } from "@material-ui/core";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import SettingsIcon from "@material-ui/icons/Settings";
 import MenuIcon from "@material-ui/icons/Menu";
+import NotificationsIcon from "@material-ui/icons/NotificationsOutlined";
+import SettingsIcon from "@material-ui/icons/SettingsOutlined";
+import InputIcon from "@material-ui/icons/Input";
 
 import { handleDrawerToggle } from "../../../../actions";
 
-const useStyles = makeStyles((theme) => {
-  const drawerWidth = 240;
-  return {
-    toolbar: {
-      paddingRight: 24,
-    },
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
-      transition: theme.transitions.create(["width", "margin"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-    appBarShift: {
-      marginLeft: drawerWidth,
-      width: `calc(100% - ${drawerWidth}px)`,
-      transition: theme.transitions.create(["width", "margin"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    menuButton: {
-      marginRight: 36,
-    },
-    menuButtonHidden: {
-      display: "none",
-    },
-    title: {
-      flexGrow: 1,
-    },
-  };
-});
+const useStyles = makeStyles(() => ({
+  root: {
+    boxShadow: "none",
+  },
+  flexGrow: {
+    flexGrow: 1,
+  },
+}));
 
 const Header = (props) => {
+  const { className, ...rest } = props;
   const classes = useStyles();
   return (
-    <AppBar
-      position="absolute"
-      className={clsx(classes.appBar, props.open && classes.appBarShift)}
-    >
-      <Toolbar className={classes.toolbar}>
+    <AppBar {...rest} className={clsx(classes.root, className)}>
+      <Toolbar className={classes.root}>
         <IconButton
           edge="start"
           color="inherit"
-          aria-label="open drawer"
           onClick={props.handleDrawerToggle}
-          className={clsx(
-            classes.menuButton,
-            props.open && classes.menuButtonHidden
-          )}
         >
           <MenuIcon />
         </IconButton>
-        <Typography
-          component="h1"
-          variant="h6"
-          color="inherit"
-          noWrap
-          className={classes.title}
-        >
-          {props.module}
+        <Typography component="h1" color="inherit" noWrap>
+          The Lawyer
         </Typography>
+        <div className={classes.flexGrow} />
         <IconButton color="inherit">
-          <Badge color="secondary">
+          <Badge badgeContent={5} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
         <IconButton color="inherit">
-          <Badge color="secondary">
-            <SettingsIcon />
-          </Badge>
+          <SettingsIcon />
         </IconButton>
-        <Button
-          href="#"
-          color="inherit"
-          variant="outlined"
-          className={classes.link}
-        >
-          Login
-        </Button>
+        <IconButton color="inherit">
+          <InputIcon />
+        </IconButton>
       </Toolbar>
     </AppBar>
   );
 };
 
 Header.propTypes = {
-  open: PropTypes.bool,
-  module: PropTypes.string,
   handleDrawerToggle: PropTypes.func,
 };
 
