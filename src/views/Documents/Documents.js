@@ -1,45 +1,52 @@
 import React from "react";
+import { makeStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { CircularProgress, Snackbar } from "@material-ui/core";
-import MuiAlert from "@material-ui/lab/Alert";
+import { bindActionCreators } from "redux";
+import { CircularProgress } from "@material-ui/core";
 
-import { Templates, FormDialog } from "./components";
+import { TemplatesToolbar, TemplatesTable, FormDialog } from "./components";
+import { fetchTemplates } from "../../actions";
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: theme.spacing(3),
+  },
+  content: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 const Documents = (props) => {
+  const classes = useStyles();
   //TODO
-  const [open, setOpen] = React.useState(true);
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpen(false);
-  };
-
+  !props.templates && props.fetchTemplates();
   return (
-    <>
+    <div className={classes.root}>
       {props.isLoading && <CircularProgress color="secondary" />}
-      {!props.isLoading && !props.error && props.templates && <Templates />}
-      {props.loadForm && !props.error && <FormDialog />}
-      {!props.error && (
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert severity="error">This is an error message!</Alert>
-        </Snackbar>
-      )}
-    </>
+      <TemplatesToolbar />
+      <div className={classes.content}>
+        {!props.isLoading && !props.error && props.templates && (
+          <TemplatesTable />
+        )}
+        {props.loadForm && !props.error && <FormDialog />}
+      </div>
+    </div>
   );
 };
 
 Documents.propTypes = {
-  module: PropTypes.string,
-  loadForm: PropTypes.bool,
-  error: PropTypes.string,
+  fetchTemplates: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({ ...state });
 
-export default connect(mapStateToProps)(Documents);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      fetchTemplates,
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(Documents);

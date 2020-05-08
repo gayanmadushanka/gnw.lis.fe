@@ -19,7 +19,6 @@ const initialState = {
   isLoading: false,
   error: null,
   open: true,
-  module: "Documents",
   loadForm: false,
   fields: [],
 };
@@ -31,7 +30,6 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         isLoading: true,
         error: null,
-        module: "Documents",
       };
     case FETCH_TEMPLATES_SUCCESS:
       return {
@@ -92,12 +90,10 @@ export default function rootReducer(state = initialState, action) {
     case LOAD_DASHBOARD:
       return {
         ...state,
-        module: "Dashboard",
       };
     case LOAD_CLIENTS:
       return {
         ...state,
-        module: "Clients",
       };
     case CLOSE_FORM:
       return {

@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import NotificationsIcon from "@material-ui/icons/NotificationsOutlined";
-import SettingsIcon from "@material-ui/icons/SettingsOutlined";
+import SettingsIcon from "@material-ui/icons/Settings";
 import InputIcon from "@material-ui/icons/Input";
 
 import { handleDrawerToggle } from "../../../../actions";

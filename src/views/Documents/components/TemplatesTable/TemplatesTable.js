@@ -6,7 +6,7 @@ import MaterialTable from "material-table";
 
 import { fetchTemplateMetadata } from "../../../../actions";
 
-const Templates = (props) => {
+const TemplatesTable = (props) => {
   return (
     <MaterialTable
       title="All Templates"
@@ -36,7 +36,7 @@ const Templates = (props) => {
   );
 };
 
-Templates.propTypes = {
+TemplatesTable.propTypes = {
   templates: PropTypes.array,
   fetchTemplateMetadata: PropTypes.func,
 };
@@ -51,4 +51,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Templates);
+export default connect(mapStateToProps, mapDispatchToProps)(TemplatesTable);
