@@ -34,26 +34,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const pages = [
-  {
-    title: "Dashboard",
-    href: "/dashboard",
-    icon: <DashboardIcon />,
-  },
+  // {
+  //   title: "Dashboard",
+  //   href: "/dashboard",
+  //   icon: <DashboardIcon />,
+  // },
   {
     title: "Templates",
     href: "/templates",
     icon: <NoteIcon />,
   },
-  {
-    title: "Clients",
-    href: "/clients",
-    icon: <PeopleIcon />,
-  },
-  {
-    title: "Matters",
-    href: "/matters",
-    icon: <MenuBookIcon />,
-  },
+  // {
+  //   title: "Clients",
+  //   href: "/clients",
+  //   icon: <PeopleIcon />,
+  // },
+  // {
+  //   title: "Matters",
+  //   href: "/matters",
+  //   icon: <MenuBookIcon />,
+  // },
   // {
   //   title: "Reports",
   //   href: "/reports",
@@ -72,8 +72,8 @@ const Sidebar = (props) => {
       variant="persistent"
     >
       <div {...rest} className={clsx(classes.root, className)}>
-        <Profile />
-        <Divider className={classes.divider} />
+        {/* <Profile />
+        <Divider className={classes.divider} /> */}
         <SidebarNav className={classes.nav} pages={pages} />
       </div>
     </Drawer>
